@@ -1,0 +1,253 @@
+/* @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #f3f4f6;
+}
+.Header {
+}
+.Header nav {
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background: f9f9f9;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 100px;
+  flex-wrap: wrap;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.logo {
+  color: rgb(15, 15, 15);
+  font-size: 35px;
+  font-weight: 600;
+}
+.Header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+nav ul li {
+  margin: 0 5px;
+}
+nav ul li a {
+  color: #161616;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+nav ul li a.active,
+nav ul li a:hover {
+  color: #111;
+  background: #fff;
+}
+nav .menu-btn i {
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+input[type="checkbox"] {
+  display: none;
+}
+@media (max-width: 1000px) {
+  nav {
+    padding: 0 40px 0 50px;
+  }
+}
+@media (max-width: 920px) {
+  nav .menu-btn i {
+    display: block;
+  }
+  #click:checked ~ .menu-btn i:before {
+    content: "\f00d";
+  }
+
+  nav ul {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    background: #111;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  #click:checked ~ ul {
+    left: 0;
+  }
+  nav ul li {
+    width: 100%;
+    margin: 40px 0;
+  }
+  nav ul li a {
+    width: 100%;
+    margin-left: -100%;
+    display: block;
+    font-size: 20px;
+    transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  #click:checked ~ ul li a {
+    margin-left: 0px;
+  }
+  nav ul li a.active,
+  nav ul li a:hover {
+    background: none;
+    color: cyan;
+  }
+}
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: -1;
+  width: 100%;
+  padding: 0 30px;
+  color: #1b1b1b;
+}
+.content div {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Roboto", "Oxygen";
+  background-color: #f3f4f6;
+  color: black;
+}
+
+.serch {
+  margin-top: 15px;
+  margin-left: 0px;
+}
+.search {
+  border: 0px;
+  outline: none;
+  padding: 4px;
+  border-radius: 3px;
+}
+.btn {
+  background-color: rgb(231, 235, 231);
+}
+
+.imgHeader {
+  margin-top: 9px;
+  background-image: url(/src/bk.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90vh;
+}
+
+
+
+.Cards {
+  margin-left: 2%;
+  border-radius: 5px;
+}
+.card {
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.productcard {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2%;
+  width: 75%;
+  margin-left: 23%;
+}
+.flex:hover {
+  color: white;
+  background-color: rgb(8, 172, 150);
+}
+
+.icon {
+  font-size: 30px;
+  background-color: rgb(196, 194, 194);
+}
+
+.sideDiv {
+  position: fixed;
+  left: 93%;
+  top: 60%;
+  width: 7%;
+  background-color: green;
+}
+
+.sideDiv button {
+  background-color: white;
+  border-radius: 5px;
+  width: 60%;
+  margin: 9%;
+  padding: 5px;
+}
+.sideDiv p {
+  margin: 9%;
+  color: white;
+}
+
+.Navbarside {
+  margin-top: 50%;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.titel {
+  position: absolute;
+  text-align: center;
+  margin-top: 11%;
+  margin-left: 23%;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1;
+}
+.input {
+  margin-top: 18%;
+  margin-left: 23%;
+  width: 50%;
+  border-radius: 0.5rem;
+  padding: 9px;
+}
+.button {
+  padding: 9px;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: green;
+} */
+* {
+}
+.img {
+  margin-top: 9px;
+  background: url("/src/9.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 75vh;
+  position: fixed;
+  
+}
+
+.img2 {
+  margin-top: 9px;
+  background: url("/src/A.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
