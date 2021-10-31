@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import TextField from '@mui/material/TextField';
 import { BrowserRouter as Router, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -55,25 +56,27 @@ const Button = styled.button`
 
 `;
 
-const Register = () => {
+const Login = () => {
   let history = useHistory();
-
-  const [Addproducts, setAddproducts] = useState({
-    userName:"",
-  Email:"",
-  password:"",
-  ConfirmPassword:"",
+  const token = JSON.parse(localStorage.getItem("user"));
+console.log(token._id);
+  const [user, setUser] = useState({
+    Email: "",
+    password: "",
   });
 
-  function Save(e) {
-    e.preventDefault();
+  function login() {
     
-      axios.post(`http://localhost:8000/user/`,Addproducts).then((res) => {
-        console.log(res);
+      axios.post(`http://localhost:8000/user/signin`,user,token)
+      .then((res) => {
+const user=localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        toast.success("User Logged In");
+        history.push(`/`);     
 
-      });      
-        history.push("/InfoVendor");
-
+      })
+      .catch((e) => toast.error(e.response.data.message));
+        
   }
   return (
     <Container>
@@ -83,24 +86,27 @@ const Register = () => {
          
        
           <TextField  id="standard" label="Email" variant="standard"  
-  onChange={(e)=>setAddproducts({...Addproducts,Email:e.target.value})}/>
+  onChange={(e)=>setUser({...user,Email:e.target.value})}/>
+  <h3></h3>
           <TextField id="standard" label="password" variant="standard" style={{ 
   minWidth: "40%",
   margin: "20px 10px 0px 0px",
   padding: "10px",
   }} 
-  onChange={(e)=>setAddproducts({...Addproducts,password:e.target.value})} />
+  onChange={(e)=>setUser({...user,password:e.target.value})} />
    
          
 
         </Form>
-               <Button    onClick={(e) => Save(e)} style={{marginTop:"10%"}} >Register Now</Button>  
+               <Button  onClick={() => login()} style={{marginTop:"10%"}} >Register Now</Button>  
       </Wrapper>
     </Container>
   );
 };
 
-export default Register;
+export default Login;
+
+
 
 
 

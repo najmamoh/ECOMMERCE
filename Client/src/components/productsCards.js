@@ -5,9 +5,10 @@ import Button from "@mui/material/Button";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-
+import  Modal  from './model'
+// import { GlobalStyle } from './globalStyles';
 import Typography from "@mui/material/Typography";
-
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +19,24 @@ import {
 
 
 export default function ProductCards(props) {
+  const [url,seturl]=React.useState()
+  const params=useParams()
+  const createUrl = (username, productId) => {
+    return 'localhost:3000/product/' + productId + '/' + username;
+  };
+
+function promoteClick(){
+const url=createUrl("asma",params.id)
+seturl(url)
+console.log(url)
+}
+
+
+// const [showModal, setShowModal] = useState(false);
+
+// const openModal = () => {
+//   setShowModal(prev => !prev);
+// };
   return (
     <Card sx={{ maxWidth: 256, marginTop: 5, marginRight: "6px" }}>
       <Link to={`/OneProduct/${props.data._id}`}>
@@ -45,14 +64,22 @@ export default function ProductCards(props) {
       <CardActions disableSpacing>
         <Button
           style={{
-            marginLeft: "30%",
             color: "white",
             backgroundColor: "#019376",
           }}
         >
           Add to cart{" "}
         </Button>
-      </CardActions>
+        <Button     style={{
+            marginLeft: "10%",
+          }} onClick={promoteClick}>promote</Button>
+        {/* <Modal showModal={showModal} setShowModal={setShowModal} />
+        <GlobalStyle /> */}
+        
+
+      </CardActions>  
+        {/* <h1>{url}</h1> */}
+
     </Card>
   );
 }

@@ -239,8 +239,7 @@ body {
   background: url("/src/9.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 75vh;
-  position: fixed;
+  height: 100vh;
   
 }
 

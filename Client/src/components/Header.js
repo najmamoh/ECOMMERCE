@@ -70,9 +70,25 @@ const MenuItem = styled.div`
   font-size: 16px;
   cursor: pointer;
   margin-left: 25px;
+  background: red
+  &:hover {
+    background-color: #a9a9a9;
+  }
 `;
 
+// const styles = theme => ({
+//   ...
+//   tr: {
+//     background: "#f1f1f1",
+//     '&:hover': {
+//        background: "#f00",
+//     },
+//   },
+//   ...
+// });
+
 const Navbar = () => {
+  const token = JSON.parse(localStorage.getItem("user"));
 
   return (
     <Container>
@@ -81,7 +97,7 @@ const Navbar = () => {
         <Left>
           <Logo>Logo</Logo>
         </Left>
-        <Center>
+        {/* <Center>
           <SearchContainer
             style={{
               width: "300px",
@@ -100,18 +116,24 @@ const Navbar = () => {
               }}            />
             <Search />
           </SearchContainer>{" "}
-        </Center>
-        <Right style={{ marginRight: "8%" }}>
+        </Center> */}
+        <Right style={{ marginRight: "20%" }}>
           <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-            <MenuItem>Home</MenuItem>
+            <MenuItem style={{color:"teal"}}>Home</MenuItem>
           </Link>
           <Link
-            to={`/products/616fc344b0a2c9fed10a2e2c`}
+            to={`/products/${token._id}`}
             style={{ textDecoration: "none", color: "black" }}
           >
             <MenuItem>Products</MenuItem>
           </Link>
-          <MenuItem>Services</MenuItem>
+          <Link
+            to={`/Services`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <MenuItem>Services</MenuItem>
+          </Link>
+
           <Link
             to="/vendors"
             style={{ textDecoration: "none", color: "black" }}
@@ -127,7 +149,7 @@ const Navbar = () => {
 
             
     
-          <MenuItem>Login</MenuItem>
+          <MenuItem>Contacts</MenuItem>
           <MenuItem>
             <Badge badgeContent={4} style={{color:"teal"}}>
               <ShoppingCartOutlined />

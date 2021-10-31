@@ -5,14 +5,22 @@ const userSchema = Mongoose.Schema({
         type:String
     },
     Email:{
-        type:String
+        type:String,
+        required: true,
     },
     password:{
-        type:Number
+        type:String,
+        required: true,
     },
     ConfirmPassword:{
-type:Number
+type:Number,
+required: true,
     },
+    role: {
+        type: String,
+        enum: ["admin", "user"],
+        default: "user",
+      },
 })
 
 const userModel = Mongoose.model('user',userSchema);

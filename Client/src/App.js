@@ -1,19 +1,16 @@
-import logo from "./logo.svg";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./navbar";
-import Header from "./Header";
+import Header from "./components/Header";
 import "./App.css";
-import Footer from "./Footer";
-import Home from "./Home";
-import productsCards from "./productsCards";
-import products from "./products";
-import Checkout from "./Checkout";
-import Vendors from "./Vendor";
-import Rigster from "./LoginVendor"
-import OneProduct from "./oneproduct";
-import InfoVendor from "./InfoVendor";
-import Affiliate from "./Affiliate"
-import Login from "./Login"
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import productsCards from "./components/productsCards";
+import products from "./components/products";
+import Checkout from "./components/Checkout";
+import Vendors from "./components/Vendor";
+import Rigster from "./components/LoginVendor"
+import OneProduct from "./components/oneproduct";
+import InfoVendor from "./components/InfoVendor";
+import Affiliate from "./components/Affiliate"
+import Login from "./components/Login"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
 

@@ -123,9 +123,11 @@ const Product = () => {
   const [product, setproduct] =  useState([]);
 
   useEffect(() => {
+  
     axios.get(`http://localhost:8000/product/${id}`).then((res) => {
-      console.log(res.data.data);
+      console.log(res);
       setproduct(res.data.data);
+
     });
   }, []);
 

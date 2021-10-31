@@ -83,7 +83,7 @@ import {
   const Footer = () => {
     return (
         <>
-      <Container style={{borderRadius:"5px",marginBottom:"0.3%",boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
+      <Container style={{borderRadius:"5px",marginTop:"5%",marginBottom:"0.3%",boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
         <Left>
           <Logo>        <img style={{width:"18%" ,  borderRadius: "10px"
 }} src="log1.jpeg"/>.</Logo>
@@ -123,7 +123,7 @@ import {
         </Right>
 
       </Container>          
-          <Container style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",padding:"5%",backgroundColor:"teal"}}>© 2021 Abnaas</Container>
+          <Container style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",padding:"4%",backgroundColor:"teal"}}>© 2021 Abnaas</Container>
 
       </>
     );

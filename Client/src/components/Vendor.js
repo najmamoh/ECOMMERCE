@@ -134,10 +134,11 @@ const Home = () => {
         }}
       > */}
       
-     <div style={{display:"flex", marginTop:"5%",marginLeft:"5%"}}>
-          <div style={{marginLeft:"5%"}}>
-            <h5 style={{fontSize:"25px"}}>For product sellers</h5>
-            <Typography style={{fontSize:"20px"}}>
+     <div style={{display:"flex", marginTop:"5%",marginLeft:"5%",backgroundColor:"white"}}>
+          <div style={{marginLeft:"5%",width:"70%",marginTop:"11px"}}>
+            <h5 style={{fontSize:"25px"
+}}>For product sellers</h5>
+            <Typography style={{fontSize:"20px",width:"80%"}}>
             This system will ease for you to boost your sales, it enables you to sell large number of items in short term. Our 
             youth are always ready for you to advertise your product
             </Typography>
@@ -147,8 +148,8 @@ const Home = () => {
           </div>
 
           <div >
-         <img style={{width:"80%" ,  borderRadius: "10px"
-}} src="o.png"/>
+         <img style={{width:"90%" ,  borderRadius: "10px"
+}} src="im.jpg"/>
          
        
          </div>{" "}
@@ -157,7 +158,7 @@ const Home = () => {
 
 
          
-<Card sx={{ minWidth: 275,marginTop:"50%",width:"95%",margin: "auto"
+<Card sx={{ minWidth: 275,width:"95%",margin: "auto" ,marginLeft:"5%" ,backgroundColor:"stone"
 }}>
     <Typography style={{fontSize:"25px",marginTop:"15px",marginLeft:"30%",color:"Black" , padding:"5px",borderRadius: "7px",
 position:"relative",width:"40%",boxShadow: "0 4px 8px 0 turquoise, 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
