@@ -5,6 +5,5 @@ Router.route("/")
   .post(productController.products)
   .get(productController.findproduct);
 
-Router.route("/:id").get(productController.getfind);
-
+Router.route("/:id").get(productController.getfind).put(productController.update)
 module.exports = Router;

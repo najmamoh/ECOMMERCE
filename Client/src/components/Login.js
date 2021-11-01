@@ -59,7 +59,7 @@ const Button = styled.button`
 const Login = () => {
   let history = useHistory();
   const token = JSON.parse(localStorage.getItem("user"));
-console.log(token._id);
+// console.log(token._id);
   const [user, setUser] = useState({
     Email: "",
     password: "",

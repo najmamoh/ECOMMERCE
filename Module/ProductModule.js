@@ -14,7 +14,9 @@ const ProductSchama = mongoose.Schema({
   Description: {
     type: String,
   },
-
+  Size:{
+    type:Number
+  },
   Image: {
     type: String,
   },

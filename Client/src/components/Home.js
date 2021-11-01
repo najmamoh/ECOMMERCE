@@ -130,7 +130,7 @@ const Home = () => {
       >
         <Box style={{ paddingBottom:"3%" ,marginTop:"5%"}}>
           <div>
-            <ProductionQuantityLimitsIcon style={{fontSize:"50px",color:"teal",marginLeft:"25%"}}/>
+            {/* <ProductionQuantityLimitsIcon style={{fontSize:"50px",color:"teal",marginLeft:"25%"}}/> */}
             <h5 style={{marginTop:"15%"}}>For product sellers</h5>
             <Typography >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc

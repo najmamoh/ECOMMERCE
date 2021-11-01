@@ -120,7 +120,18 @@ const Button = styled.button`
 
 const Product = () => {
   const { id } = useParams();
+  const [qty, setqty] = useState(0);
   const [product, setproduct] =  useState([]);
+
+
+  const [Order, setorder] = useState({
+    name: "",
+      quantity: "",
+      price: "",
+      total: "",
+      image: ""
+  });
+
 
   useEffect(() => {
   
@@ -130,6 +141,20 @@ const Product = () => {
 
     });
   }, []);
+
+  function Saveorder(e) {
+    e.preventDefault();
+    
+      axios.post(`http://localhost:8000/Order/`,Order).then((res) => {
+        
+        console.log(res);
+
+      });      
+
+  }
+
+
+
 
   return (
     <Container>
@@ -151,12 +176,13 @@ const Product = () => {
           <Price>$ {product.Price}</Price>
 
           <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <Link to="/Checkout">            <Button>ADD TO CART</Button>
+            <AmountContainer >
+              <Remove onClick={() => qty > 0 && setqty(qty - 1)}/>
+              <Amount >{qty}</Amount>
+              <Add  onClick={() => qty < product.qty && setqty(qty + 1)}
+/>
+            </AmountContainer >
+            <Link to={`/Checkout/${product._id}`}>            <Button>ADD TO CART</Button>
 </Link>
           </AddContainer>
         </InfoContainer>

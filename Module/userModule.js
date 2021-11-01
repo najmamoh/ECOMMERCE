@@ -21,6 +21,10 @@ required: true,
         enum: ["admin", "user"],
         default: "user",
       },
+      product: {
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: "product",
+      },
 })
 
 const userModel = Mongoose.model('user',userSchema);

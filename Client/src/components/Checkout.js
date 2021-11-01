@@ -1,7 +1,15 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+} from "react-router-dom";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -146,12 +154,30 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const { id } = useParams();
+  const [product, setproduct] =  useState([]);
+  const [qty, setqty] = useState(0);
+
+
+
+
+  useEffect(() => {
+  
+    axios.get(`http://localhost:8000/product/${id}`).then((res) => {
+      console.log(res);
+      setproduct(res.data.data);
+console.log(product);
+    });
+  }, []);
+
+
+
+
   return (
     <Container>
       
       <Wrapper>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
           </TopTexts>
@@ -164,61 +190,45 @@ const Cart = () => {
                 <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
                 <Details>
                   <ProductName>
-                    <b>ProductName:</b> Shoose
+                    <b>ProductName:</b> {product.Name}
                   </ProductName>
               
                   <ProductSize>
-                    <b>Size:</b> 37.5
+                    <b>Size:</b> {product.Size}
                   </ProductSize>
                 </Details>
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
+                <Remove onClick={() => qty > 0 && setqty(qty - 1)}/>
+                  <ProductAmount>{qty}</ProductAmount>
+                  <Add               onClick={() => qty < product.qty && setqty(qty + 1)}/>
+                  
                 </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
+                <ProductPrice>${product.Price}</ProductPrice>
               </PriceDetail>
             </Product>
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="../5.png" />
-                <Details>
-                  <ProductName>
-                    <b>ProductName:</b> Shoose
-                  </ProductName>
-                 
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 20</ProductPrice>
-              </PriceDetail>
-            </Product>
+            
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemText>Name</SummaryItemText>
+              <SummaryItemPrice>Shoose</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
+              <SummaryItemText>Price</SummaryItemText>
+              <SummaryItemPrice>$ 80</SummaryItemPrice>
+            </SummaryItem>
+            {/* <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
               <SummaryItemPrice>$ 5.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
               <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
+            </SummaryItem> */}
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>

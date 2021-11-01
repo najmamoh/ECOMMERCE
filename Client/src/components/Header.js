@@ -122,7 +122,7 @@ const Navbar = () => {
             <MenuItem style={{color:"teal"}}>Home</MenuItem>
           </Link>
           <Link
-            to={`/products/${token._id}`}
+            to={`/products/`}
             style={{ textDecoration: "none", color: "black" }}
           >
             <MenuItem>Products</MenuItem>
