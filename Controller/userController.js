@@ -1,4 +1,4 @@
-const User =require('../module/userModule')
+const User =require('../Module/userModule')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
