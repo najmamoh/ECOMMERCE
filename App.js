@@ -30,9 +30,9 @@ App.use('/Order',orderRouter)
 
 
 
-App.use('*',(req,res)=>{
 App.use(Express.static("Client/build"))
-res.send(path.resolve(__dirname,'Client','build','index.html'))
+App.get('*',(req,res)=>{
+res.sendFile(path.resolve(__dirname,'Client','build','index.html'))
 })
 
 
