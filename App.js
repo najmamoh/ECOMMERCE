@@ -15,7 +15,7 @@ const userRouter=require('./Router/userRouter')
 App.use('/user',userRouter);
 
 
-const ProductRouter=require('./Router/ProductRouter')
+const ProductRouter=require('./Router/productRouter')
 App.use('/product',ProductRouter)
 
 

@@ -124,15 +124,6 @@ const Product = () => {
   const [product, setproduct] =  useState([]);
 
 
-  const [Order, setorder] = useState({
-    name: "",
-      quantity: "",
-      price: "",
-      total: "",
-      image: ""
-  });
-
-
   useEffect(() => {
   
     axios.get(`http://localhost:8000/product/${id}`).then((res) => {
@@ -142,14 +133,11 @@ const Product = () => {
     });
   }, []);
 
-  function Saveorder(e) {
-    e.preventDefault();
-    
-      axios.post(`http://localhost:8000/Order/`,Order).then((res) => {
-        
-        console.log(res);
+  function addCart(e) {
+    let item = [product];
 
-      });      
+    const user=localStorage.setItem(qty, JSON.stringify(item));
+   
 
   }
 
@@ -182,7 +170,8 @@ const Product = () => {
               <Add  onClick={() => qty < product.qty && setqty(qty + 1)}
 />
             </AmountContainer >
-            <Link to={`/Checkout/${product._id}`}>            <Button>ADD TO CART</Button>
+            <Link to={`/Checkout/${product._id}`}>            <Button               onClick={() => addCart(product)}
+>ADD TO CART</Button>
 </Link>
           </AddContainer>
         </InfoContainer>
