@@ -1,5 +1,5 @@
 const express=require('express')
-const vendorController=require('../controller/vendorController')
+const vendorController=require('../Controller/vendorController')
 const Router=express.Router();
 Router.route('/').post(vendorController.Vendor)
 .get(vendorController.findVendor)
