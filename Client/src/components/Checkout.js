@@ -154,12 +154,11 @@ const Button = styled.button`
 `;
 
 const Cart = () => {    
-  const   Qty = JSON.parse(localStorage.getItem("qty"));
+  const   Qty = JSON.parse(localStorage.getItem("cart"));
 
   const { id } = useParams();
   const [product, setproduct] =  useState([]);
-  const [qty, setqty] = useState(Qty);
-
+  const [qty, setqty] = useState(2);
 
 
   useEffect(() => {
@@ -167,7 +166,6 @@ const Cart = () => {
     axios.get(`http://localhost:8000/product/${id}`).then((res) => {
       console.log(res);
       setproduct(res.data.data);
-console.log(product);
     });
   }, []);
 
@@ -179,7 +177,7 @@ console.log(product);
       <Wrapper>
         <Top>
           <TopTexts>
-            <TopText>Shopping Bag({Qty})</TopText>
+            <TopText>Shopping Bag()</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
@@ -224,7 +222,7 @@ console.log(product);
 
             <SummaryItem>
               <SummaryItemText>  Quantity</SummaryItemText>
-              <SummaryItemPrice>{Qty}</SummaryItemPrice>
+              <SummaryItemPrice>{qty}</SummaryItemPrice>
             </SummaryItem>
 
             {/* <SummaryItem>
@@ -237,7 +235,7 @@ console.log(product);
             </SummaryItem> */}
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$90</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>

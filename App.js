@@ -36,7 +36,7 @@ res.sendFile(path.resolve(__dirname,'Client','build','index.html'))
 })
 
 
-const port=process.env.port
-App.listen(port,()=>{
-    console.log(`listing on port  ${port}` );
+const PORT=process.env.PORT
+App.listen(PORT,()=>{
+    console.log(`listing on port  ${PORT}` );
 })
