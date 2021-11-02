@@ -1,4 +1,4 @@
-const AffiliateModel=require('../module/AffiliateModule')
+const AffiliateModel=require('../Module/AffiliateModule')
 exports.Affiliate= async(req,res)=>{
     try{
     await AffiliateModel.create(
