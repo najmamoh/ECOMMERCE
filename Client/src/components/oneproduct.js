@@ -134,10 +134,10 @@ const Product = () => {
   }, []);
 
   function addCart(e) {
-    let item = [product];
+    let item = [qty];
 
-    const user=localStorage.setItem(qty, JSON.stringify(item));
-   
+    const Qty=localStorage.setItem("qty", JSON.stringify(item));
+
 
   }
 

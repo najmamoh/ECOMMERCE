@@ -153,16 +153,17 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
-const Cart = () => {
+const Cart = () => {    
+  const   Qty = JSON.parse(localStorage.getItem("qty"));
+
   const { id } = useParams();
   const [product, setproduct] =  useState([]);
-  const [qty, setqty] = useState(0);
-
+  const [qty, setqty] = useState(Qty);
 
 
 
   useEffect(() => {
-  
+
     axios.get(`http://localhost:8000/product/${id}`).then((res) => {
       console.log(res);
       setproduct(res.data.data);
@@ -172,14 +173,13 @@ console.log(product);
 
 
 
-
   return (
     <Container>
       
       <Wrapper>
         <Top>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({Qty})</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
@@ -202,7 +202,7 @@ console.log(product);
                 <ProductAmountContainer>
                 <Remove onClick={() => qty > 0 && setqty(qty - 1)}/>
                   <ProductAmount>{qty}</ProductAmount>
-                  <Add               onClick={() => qty < product.qty && setqty(qty + 1)}/>
+                  <Add               onClick={() => qty < product.qty && setqty(  qty + 1)}/>
                   
                 </ProductAmountContainer>
                 <ProductPrice>${product.Price}</ProductPrice>
@@ -221,6 +221,12 @@ console.log(product);
               <SummaryItemText>Price</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>
             </SummaryItem>
+
+            <SummaryItem>
+              <SummaryItemText>  Quantity</SummaryItemText>
+              <SummaryItemPrice>{Qty}</SummaryItemPrice>
+            </SummaryItem>
+
             {/* <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
               <SummaryItemPrice>$ 5.90</SummaryItemPrice>
