@@ -134,19 +134,10 @@ const Product = () => {
   }, []);
 
   function addCart(e) {
-    const cart = localStorage.getItem("cart");
-    if (cart === null) {
-      product.qty = qty;
-      let item = [product];
-      localStorage.setItem("cart", JSON.stringify(item));
-    } else {
-      let prevItem = JSON.parse(localStorage.getItem("cart"));
-      product.qty = qty;
-      let items = [...prevItem, product];
-      localStorage.setItem("cart", JSON.stringify(items));
-    }
-  
+    let item = [qty];
 
+    const Qty=localStorage.setItem("qty", JSON.stringify(item));
+   
 
   }
 

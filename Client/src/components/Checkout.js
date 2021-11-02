@@ -154,11 +154,11 @@ const Button = styled.button`
 `;
 
 const Cart = () => {    
-  const   Qty = JSON.parse(localStorage.getItem("cart"));
+  const   Qty = JSON.parse(localStorage.getItem("qty"));
 
   const { id } = useParams();
   const [product, setproduct] =  useState([]);
-  const [qty, setqty] = useState(2);
+  const [qty, setqty] = useState(Qty);
 
 
   useEffect(() => {
@@ -177,7 +177,7 @@ const Cart = () => {
       <Wrapper>
         <Top>
           <TopTexts>
-            <TopText>Shopping Bag()</TopText>
+            <TopText>Shopping Bag({qty})</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
