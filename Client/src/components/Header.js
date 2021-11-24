@@ -1,30 +1,29 @@
 import { Badge } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-
+import * as Scroll from "react-scroll";
+import {Link,useHistory} from 'react-router-dom'
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-} from "react-router-dom";import { borderRight } from "@mui/system";
-
+import Login from "./Login"
+import Register  from "./LoginVendor";
+import {Modal} from "@material-ui/core";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Model } from "mongoose";
 
 
 const Container = styled.div`
-  height: 80px;
+  height: 90px;
 `;
 
 const Wrapper = styled.div`
-  padding: 10px 20px;
+position: fixed;
+  padding: 5px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 `;
 
 const Left = styled.div`
@@ -51,8 +50,10 @@ const Input = styled.input`
 `;
 
 const Center = styled.div`
-  // flex: 1;
-  // text-align: center;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const Logo = styled.h1`
@@ -61,20 +62,22 @@ const Logo = styled.h1`
 const Right = styled.div`
   flex: 1;
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  color: balck;
+
 `;
 
 const MenuItem = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   margin-left: 25px;
-  background: red
-  &:hover {
-    background-color: #a9a9a9;
-  }
+ 
+  justify-content: space-between;
+  font-family: Times New Roman;
+
+   
 `;
+
+
 
 // const styles = theme => ({
 //   ...
@@ -89,73 +92,163 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const token = JSON.parse(localStorage.getItem("user"));
+  let history = useHistory();
+  const [open, setOpen] = useState(false);
+  console.log(open);
 
+  const Logout=()=>{
+    localStorage.clear()  
+      history.push(`/`); 
+
+    reload()
+
+  }
+
+  // const remove=()=>{
+  //     const removeuser = JSON.parse(localStorage.removeItem(("user")))
+
+
+  // }
+ 
+
+  function reload() {
+    window.location.reload();
+
+
+  }
   return (
-    <Container>
+    <Container id="/">
       
       <Wrapper>
         <Left>
-          <Logo>Logo</Logo>
-        </Left>
-        {/* <Center>
-          <SearchContainer
-            style={{
-              width: "300px",
-              backgroundColor: "white",
-              borderRadius: "5rem",
-              marginRight: "8%",
-            }}
-          >
-            <Input
-              placeholder="Search"
-              style={{
-                width: "300px",
-                backgroundColor: "white",
-                borderRadius: "5rem",
-                marginRight: "8%",
-              }}            />
-            <Search />
-          </SearchContainer>{" "}
-        </Center> */}
-        <Right style={{ marginRight: "20%" }}>
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+          <Logo>  logo
+              {/* <img style={{width:"200px"
+}} src="log1.png"/> */}
+</Logo>
+          
+       </Left>
+        
+       
+        <Center style={{ marginLeft: "50%",textDecorationLine:"none"
+ }}>
+          
+          <Scroll.Link to="/"  smooth={true} duration={1000}  style={{ textDecoration: "none", color: "black" }}>
+          <Link to="/" style={{textDecorationLine:"none" }}>
             <MenuItem style={{color:"teal"}}>Home</MenuItem>
-          </Link>
+            </Link>
+          </Scroll.Link>
+        
+{ localStorage.getItem('user') !== null && 
+<>
+          {JSON.parse(localStorage.getItem('user')).role === 'user' && 
           <Link
-            to={`/products/`}
+            to={`/products` }
             style={{ textDecoration: "none", color: "black" }}
           >
             <MenuItem>Products</MenuItem>
           </Link>
-          <Link
-            to={`/Services`}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <MenuItem>Services</MenuItem>
-          </Link>
+}
+</>
+}
 
-          <Link
-            to="/vendors"
+
+
+
+          <Scroll.Link
+            to="/vendor" smooth={true} duration={1000}
             style={{ textDecoration: "none", color: "black" }}
           >
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
     <MenuItem>Vendor </MenuItem>
-            </Link>
-            <Link
-            to="/Affiliate"
-            style={{ textDecoration: "none", color: "black" }}
+    </Link>
+            </Scroll.Link>
+
+
+            <Scroll.Link
+            to="/vendor"smooth={true} duration={1000}
+         
           >
+            <Link  to="/" style={{ color:"black",textDecorationLine:"none" }}>
     <MenuItem>Affiliate </MenuItem>
-            </Link>
+    </Link>
+            </Scroll.Link>
 
             
     
-          <MenuItem>Contacts</MenuItem>
-          <MenuItem>
-            <Badge badgeContent={4} style={{color:"teal"}}>
-              <ShoppingCartOutlined />
-            </Badge>
-          </MenuItem>
-        </Right>
+           
+
+    <MenuItem>About </MenuItem>
+   
+    <MenuItem>Contact </MenuItem>
+    
+        </Center>
+
+<Right style={{marginLeft: "20%" }}>
+{ localStorage.getItem('user') === null && 
+<>
+          {JSON.parse(localStorage.getItem('user')) !== "user" && 
+
+<Link to="/login" style={{textDecorationLine:"none"}}>
+
+<Button  
+  // onClick={() => setOpen(true)}
+style={{backgroundColor:"white",borderRadius:"50px",  border: "2px solid #159b80",    width:" 100%",  
+  padding: ".2rem 1.3rem"
+
+
+}}>Login</Button> 
+
+</Link>
+}
+</>
+}
+
+{ localStorage.getItem('user') === null && 
+<>
+          {JSON.parse(localStorage.getItem('user')) !== "user" && 
+
+<Link to="/Rigster" style={{textDecorationLine:"none"}}>
+
+        <Button    style={{backgroundColor:"#159b80" ,borderRadius:"50px",    width: "100%",
+                  padding: ".2rem 1.3rem",border: "2px solid #159b80",marginLeft:"5%"
+
+}} onClick={() => setOpen(true)}>Singup</Button>
+</Link>
+}
+</>
+}
+
+
+{ localStorage.getItem('user') !== null && 
+<>
+  {JSON.parse(localStorage.getItem('user')).role === 'user' && 
+
+<Button  onClick={() => Logout()}   style={{backgroundColor:"#red" ,borderRadius:"50px",    width: "100%",
+                  padding: ".2rem 1.3rem",border: "2px solid #159b80",marginLeft:"5%"}} >Logout</Button>
+}
+</>
+}
+</Right>
+
+
+
+
+
+
+
+           {/* <Modal open={open}   ><Login/>
+</Modal> */}
+
+
+{/* <Modal open={open}   ><Register/>
+</Modal> */}
+
+
+
+
+
+
+
       </Wrapper>
       {/* {products.map((product) => (
 <h1>{product.Name}</h1>      ))} */}

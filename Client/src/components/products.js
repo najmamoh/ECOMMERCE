@@ -19,10 +19,11 @@ const Products = () => {
   const { id } = useParams();
 
   const [products, setproducts] = useState([]);
+  const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
   
-    axios.get(`http://localhost:8000/product/`).then((res) => {
+    axios.get(`http://localhost:8000/product/?token=${token}`).then((res) => {
       console.log(res.data.data);
       setproducts(res.data.data);
 
@@ -31,16 +32,11 @@ const Products = () => {
 
   }, []);
   return (
-    // <div className="img">
-    //    <div>
-    //    <h1 className="titel">TOGETHER FOR SUCCESS LET US START</h1>
-    //     <input type="text" className="input"></input>
-    //       </div>
+   
     <Container style={{ width: "70%", margin: "auto" }}>
       {products.map((product) => (
         <ProductsCards data={product} />
       ))}
-      {/* <ProductsCards /> */}
     </Container>
   );
 };

@@ -1,11 +1,11 @@
-const Order = require("../Module/orderModel");
+const Order = require("../Model/orderModel");
 
 exports.saveOrder = async (req, res) => {
   try {
     await Order.create(req.body);
     res.status(201).json({ message: "Order created successfully" });
   } catch (e) {
-    console.log("error");
+    message:e.message
   }
 };
 

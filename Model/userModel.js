@@ -14,11 +14,10 @@ const userSchema = Mongoose.Schema({
     },
     ConfirmPassword:{
 type:Number,
-required: true,
     },
     role: {
         type: String,
-        enum: ["admin", "user"],
+        enum: ["admin", "user",'vendor'],
         default: "user",
       },
       product: {

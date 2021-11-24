@@ -1,4 +1,4 @@
-const vendorModel=require('../Module/vendorModule')
+const vendorModel=require('../Model/vendorModel')
 exports.Vendor= async(req,res)=>{
     try{
     await vendorModel.create(

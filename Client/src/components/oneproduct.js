@@ -133,13 +133,15 @@ const Product = () => {
     });
   }, []);
 
-  function addCart(e) {
-    let item = [qty];
-
-    const Qty=localStorage.setItem("qty", JSON.stringify(item));
-   
-
-  }
+  function addCart(product) {
+      const cart = localStorage.getItem("cart");
+        product.quantity = qty;
+        let item = [product];
+        localStorage.setItem("cart", JSON.stringify(item));
+      
+ 
+    }
+  
 
 
 
@@ -153,7 +155,7 @@ const Product = () => {
           <Image src="../img.jpg" />
         </ImgContainer>
         <InfoContainer>
-          <Title>{product.Name}</Title>
+          <Title>{product.name}</Title>
           <Desc>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
@@ -161,7 +163,7 @@ const Product = () => {
             tristique tortor pretium ut. Curabitur elit justo, consequat id
             condimentum ac, volutpat ornare.
           </Desc>
-          <Price>$ {product.Price}</Price>
+          <Price>$ {product.price}</Price>
 
           <AddContainer>
             <AmountContainer >
@@ -170,7 +172,7 @@ const Product = () => {
               <Add  onClick={() => qty < product.qty && setqty(qty + 1)}
 />
             </AmountContainer >
-            <Link to={`/Checkout/${product._id}`}>            <Button               onClick={() => addCart(product)}
+            <Link to={`/Cart/${product._id}`}>            <Button               onClick={() => addCart(product)}
 >ADD TO CART</Button>
 </Link>
           </AddContainer>

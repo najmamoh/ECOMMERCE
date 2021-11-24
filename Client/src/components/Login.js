@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 margin-bottom: 90px;
 margin-left:40%;
 
-  width: 40%;
+  width: 30%;
   padding: 25px;
   background-color: white;
   border-radius: 10px;
@@ -66,41 +66,108 @@ const Login = () => {
   });
 
   function login() {
-    
-      axios.post(`http://localhost:8000/user/signin`,user,token)
-      .then((res) => {
+          axios.post(`http://localhost:8000/user/signin`,user,token)
+      .then((res) =>  {
 const user=localStorage.setItem("user", JSON.stringify(res.data.user));
         localStorage.setItem("token", JSON.stringify(res.data.token));
-        toast.success("User Logged In");
-        history.push(`/`);     
+   toast.success("User logged in")
+        history.push(`products`); 
+        window.location.reload();
+        //  if(res.data.user.role === 'user'){
+      //   history.push(`/`); 
+      //  }else if(res.data.user.role === 'vendor'){
+      //   history.push(`/vendor`); 
+      //  }else{
+      //   history.push(`/affilate`); 
+      //  }
+            
 
       })
-      .catch((e) => toast.error(e.response.data.message));
+      // .catch((e) => toast.error(e.response.data.message));
         
   }
   return (
-    <Container>
-      <Wrapper>
-        <Title>Login</Title>
+
+    <div class="container" >
+    <span class="big-circle"></span>
+    {/* <img src="img/shape.png" class="square" alt="" /> */}
+    <div class="form">
+      <div class="contact-info">
+       
+
+       
+<img src="log1.jpeg" style={{width:"100%"}}></img>
+      </div>
+
+      <div class="contact-form">
+        <span class="circle one"></span>
+        <span class="circle two"></span>
+
         <Form>
          
+
+<h1 style={{color:"white"}}>login</h1>
        
-          <TextField  id="standard" label="Email" variant="standard"  
+          <TextField  id="standard" label="Email" variant="outlined"  style={{ 
+  width: "100%",
+  margin: "20px 10px 0px 0px",
+  borderRadius:"5px",
+  backgroundColor:"white"
+  }}
   onChange={(e)=>setUser({...user,Email:e.target.value})}/>
   <h3></h3>
-          <TextField id="standard" label="password" variant="standard" style={{ 
-  minWidth: "40%",
+          <TextField id="standard" label="password" variant="outlined" style={{ 
+  width: "100%",
   margin: "20px 10px 0px 0px",
-  padding: "10px",
+  borderRadius:"5px",
+  backgroundColor:"white"
+
   }} 
   onChange={(e)=>setUser({...user,password:e.target.value})} />
    
+
+
+        </Form>   <Button  onClick={() => login()} style={{marginTop:"10%",backgroundColor:"white",color:"black" ,padding:"3%",fontSize:"15px",marginLeft:"10%"}} >Register Now</Button>  
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  //   <Container>
+  //     <Wrapper>
+  //       <Title>Login</Title>
+  //       <Form>
+         
+       
+  //         <TextField  id="standard" label="Email" variant="standard"  style={{ 
+  // width: "100%",
+  // margin: "20px 10px 0px 0px",
+  // padding: "10px",
+  // }}
+  // onChange={(e)=>setUser({...user,Email:e.target.value})}/>
+  // <h3></h3>
+  //         <TextField id="standard" label="password" variant="standard" style={{ 
+  // width: "100%",
+  // margin: "20px 10px 0px 0px",
+  // padding: "10px",
+  // }} 
+  // onChange={(e)=>setUser({...user,password:e.target.value})} />
+   
          
 
-        </Form>
-               <Button  onClick={() => login()} style={{marginTop:"10%"}} >Register Now</Button>  
-      </Wrapper>
-    </Container>
+  //       </Form>
+              //  <Button  onClick={() => login()} style={{marginTop:"10%" ,padding:"3%",fontSize:"15px"}} >Register Now</Button>  
+  //     </Wrapper>
+  //   </Container>
   );
 };
 

@@ -158,7 +158,7 @@ const Home = () => {
 
 
          
-<Card sx={{ minWidth: 275,width:"95%",margin: "auto" ,marginLeft:"5%" ,backgroundColor:"stone"
+<Card sx={{ minWidth: 275,width:"95%",margin: "auto" ,marginLeft:"5%" ,backgroundColor:"stone",marginTop:"9%"
 }}>
     <Typography style={{fontSize:"25px",marginTop:"15px",marginLeft:"30%",color:"Black" , padding:"5px",borderRadius: "7px",
 position:"relative",width:"40%",boxShadow: "0 4px 8px 0 turquoise, 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>

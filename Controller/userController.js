@@ -1,4 +1,4 @@
-const User =require('../Module/userModule')
+const User =require('../Model/userModel')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -37,10 +37,12 @@ exports.signin = async (req, res) => {
       // res.json({token})
     );
 
-
+    user.password = undefined
     res.status(200).json({ message: "Logged in", user, token });
   } catch (e) {
     res.status(404).json({ message: "error" });
+    res.status(400).json((console.log(e.message)));
+
   }
 };
 
@@ -69,12 +71,13 @@ exports.saveUser = async (req, res) => {
       Email: req.body.Email,
       userName: req.body.userName,
       password: hashedPassword,
-      ConfirmPassword:req.body.ConfirmPassword
+      role:req.body.role
+      // ConfirmPassword:req.body.ConfirmPassword
     });
 
     const token = jwt.sign(
       { id: createdUser._id, role: createdUser.role, email: createdUser.email },
-      "RETURN_DEV",
+      "ABNAAS",
       {
         expiresIn: "2 days",
       }

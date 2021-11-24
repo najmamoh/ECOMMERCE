@@ -1,3 +1,113 @@
+import * as React from 'react';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import { margin } from '@mui/system';
+
+// export default function AddressForm() {
+//   return (
+    // <React.Fragment >
+    //     <div style={{width:"35%", margin:"auto", boxShadow:
+    //         "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}} >
+    //             <div style={{margin:"9%"}}>
+    //   <Typography   variant="h6" gutterBottom  style={{paddingTop:"9%"}}>
+    //     Shipping address
+    //   </Typography>
+    //   <Grid container spacing={3}>
+    //     <Grid item xs={12} sm={6}>
+    //       <TextField
+    //         required
+    //         id="firstName"
+    //         name="firstName"
+    //         label="First name"
+    //         fullWidth
+    //         autoComplete="given-name"
+    //         variant="standard"
+    //       />
+    //     </Grid>
+    //     <Grid item xs={12} sm={6}>
+    //       <TextField
+    //         required
+    //         id="lastName"
+    //         name="lastName"
+    //         label="Last name"
+    //         fullWidth
+    //         autoComplete="family-name"
+    //         variant="standard"
+    //       />
+    //     </Grid>
+    //     <Grid item xs={12}>
+    //       <TextField
+    //         required
+    //         id="address1"
+    //         name="address1"
+    //         label="Address line 1"
+    //         fullWidth
+    //         autoComplete="shipping address-line1"
+    //         variant="standard"
+    //       />
+    //     </Grid>
+    //     <Grid item xs={12}>
+    //       <TextField
+    //         id="address2"
+    //         name="address2"
+    //         label="Address line 2"
+    //         fullWidth
+    //         autoComplete="shipping address-line2"
+    //         variant="standard"
+    //       />
+    //     </Grid>
+    //     <Grid item xs={12} sm={6}>
+    //       <TextField
+    //         required
+    //         id="city"
+    //         name="city"
+    //         label="City"
+    //         fullWidth
+    //         autoComplete="shipping address-level2"
+    //         variant="standard"
+    //       />
+    //     </Grid>
+    //     <Grid item xs={12} sm={6}>
+    //       <TextField
+    //         id="state"
+    //         name="state"
+    //         label="State/Province/Region"
+    //         fullWidth
+    //         variant="standard"
+    //       />
+    //     </Grid>
+    //     <Grid item xs={12} sm={6}>
+    //       <TextField
+    //         required
+    //         id="zip"
+    //         name="zip"
+    //         label="Zip / Postal code"
+    //         fullWidth
+    //         autoComplete="shipping postal-code"
+    //         variant="standard"
+    //       />
+    //     </Grid>
+    //     <Grid item xs={12} sm={6}>
+    //       <TextField style={{paddingBottom:"50%"}}
+    //         required
+    //         id="country"
+    //         name="country"
+    //         label="Country"
+    //         fullWidth
+    //         autoComplete="shipping country"
+    //         variant="standard"
+    //       />
+    //     </Grid>
+       
+    //   </Grid></div></div>
+    // </React.Fragment>
+//   );
+// }
+
+
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 
@@ -9,6 +119,7 @@ import {
   Route,
   Link,
   useParams,
+  useHistory
 } from "react-router-dom";
 const Container = styled.div``;
 
@@ -153,71 +264,130 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
-const Cart = () => {    
-  const   Qty = JSON.parse(localStorage.getItem("qty"));
+const Checkout = () => {    
+const History=useHistory();
+  const [Shipping, setShipping] = useState({
+    firstName: "",
+    secondName: "",
+    email: "",
+    shipping: "",
+    phone: "",
 
-  const { id } = useParams();
-  const [product, setproduct] =  useState([]);
-  const [qty, setqty] = useState(Qty);
+  });     
+    const   cart = JSON.parse(localStorage.getItem("cart"));
 
+      const [Cart,setcart]=useState(cart) 
 
-  useEffect(() => {
+       const [qty, setqty] = useState(cart[0].quantity);
+       
 
-    axios.get(`http://localhost:8000/product/${id}`).then((res) => {
-      console.log(res);
-      setproduct(res.data.data);
-    });
-  }, []);
+  function placeOrder() {
+    const data = { ...Shipping,Cart};
+    axios.post("http://localhost:8000/order", data);
+    History.push("/Checkoutorder")
+  }
+
 
 
 
   return (
     <Container>
+   
+      <Wrapper style={{marginTop:"5%"}}>   <Bottom>
+      <React.Fragment >
+        <div style={{width:"50%", margin:"auto", boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}} >
+                <div style={{margin:"9%"}}>
+      <Typography   variant="h6" gutterBottom  >
+     
+Billing details      </Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="firstName"
+            name="firstName"
+            label="First name"
+            fullWidth
+            autoComplete="given-name"
+            variant="standard"
+            onChange={(e) =>
+              setShipping({ ...Shipping, firstName: e.target.value })
+            }
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="lastName"
+            name="lastName"
+            label="Last name"
+            fullWidth
+            autoComplete="family-name"
+            variant="standard"
+            onChange={(e) =>
+              setShipping({ ...Shipping, secondName: e.target.value })
+            }
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="address1"
+            name="Email"
+            label="Email"
+            fullWidth
+            autoComplete="shipping address-line1"
+            variant="standard"
+            onChange={(e) =>
+              setShipping({ ...Shipping, email: e.target.value })
+            }
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            id="address2"
+            name="Phone Numbe"
+            label="Phone Numbe"
+            fullWidth
+            autoComplete="shipping address-line2"
+            variant="standard"
+            onChange={(e) =>
+              setShipping({ ...Shipping, phone: e.target.value })
+            }
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="Address"
+            name="city"
+            label="Address"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+            onChange={(e) =>
+              setShipping({ ...Shipping, Address: e.target.value })
+            }
+          />
+        </Grid>
+       
+       
+      </Grid></div></div>
       
-      <Wrapper>
-        <Top>
-          <TopTexts>
-            <TopText>Shopping Bag({qty})</TopText>
-          </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
-        </Top>
-        <Bottom>
-          <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
-                <Details>
-                  <ProductName>
-                    <b>ProductName:</b> {product.Name}
-                  </ProductName>
-              
-                  <ProductSize>
-                    <b>Size:</b> {product.Size}
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                <Remove onClick={() => qty > 0 && setqty(qty - 1)}/>
-                  <ProductAmount>{qty}</ProductAmount>
-                  <Add               onClick={() => qty < product.qty && setqty(  qty + 1)}/>
-                  
-                </ProductAmountContainer>
-                <ProductPrice>${product.Price}</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            
-          </Info>
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+    </React.Fragment>                 
+
+    <div style={{width:"25%",marginRight:"10%" , boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",borderRadius:"5px" ,backgroundColor:"#1abc9c"}}>
+   <Summary>
+            <SummaryItemText style={{color:"white",fontSize:"35px"}}>YOUR ORDER </SummaryItemText>
             <SummaryItem>
               <SummaryItemText>Name</SummaryItemText>
-              <SummaryItemPrice>Shoose</SummaryItemPrice>
+              <SummaryItemPrice> {cart[0].name}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Price</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart[0].price}</SummaryItemPrice>
             </SummaryItem>
 
             <SummaryItem>
@@ -235,14 +405,17 @@ const Cart = () => {
             </SummaryItem> */}
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$90</SummaryItemPrice>
+              <SummaryItemPrice>${ cart[0].price *qty}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-          </Summary>
+            <Button       style={{backgroundColor:"white" ,color:"black",borderRadius:"5px"}}               onClick={() => placeOrder()}
+     
+>Proceed to checkout</Button>
+
+          </Summary>  </div>
         </Bottom>
       </Wrapper>
     </Container>
   );
 };
 
-export default Cart;
+export default Checkout;

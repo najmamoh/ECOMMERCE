@@ -12,6 +12,7 @@ import {
   
   const Container = styled.div`
     display: flex;
+
   `;
   
   const Left = styled.div`
@@ -83,9 +84,9 @@ import {
   const Footer = () => {
     return (
         <>
-      <Container style={{borderRadius:"5px",marginTop:"5%",marginBottom:"0.3%",boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
+      <Container style={{borderRadius:"5px",backgroundColor:"#f7f7f7",marginTop:"5%",marginBottom:"0.3%",boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
         <Left>
-          <Logo>        <img style={{width:"18%" ,  borderRadius: "10px"
+          <Logo>        <img style={{width:"30%" ,  borderRadius: "10px"
 }} src="log1.jpeg"/>.</Logo>
           <Desc>
             There are many variations of passages of Lorem Ipsum available, but
@@ -110,7 +111,6 @@ import {
 }} src="log1.jpeg"/>
                  </Center>
         <Right>
-          <Title>Contact</Title>
           <ContactItem>
             <Room style={{marginRight:"10px"}}/> 
           </ContactItem>
@@ -123,8 +123,7 @@ import {
         </Right>
 
       </Container>          
-          <Container style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",padding:"4%",backgroundColor:"teal"}}>© 2021 Abnaas</Container>
-
+          <Container style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",padding:"4%",backgroundColor:"#1abc9c"}}>© 2021 Abnaas</Container>
       </>
     );
   };

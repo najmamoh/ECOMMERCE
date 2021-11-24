@@ -35,7 +35,7 @@ margin-bottom: 90px;
 const Title = styled.h1`
   font-size: 26px;
   font-weight: 300;
-  color:teal
+  color:#159b80
 `;
 
 const Form = styled.form`
@@ -88,7 +88,7 @@ const Register = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
+        <Title>Personal info</Title>
         <Form>
          
         <TextField id="standard-basic" label="FullName" variant="standard" style={{  flex: 1,
@@ -132,7 +132,7 @@ const Register = () => {
             to="/products"
             style={{ textDecoration: "none", color: "black" }}
           >
-        <Button style={{marginTop:"10%"}} >CREATE</Button>
+        <Button style={{marginTop:"10%" ,backgroundColor:"#159b80"}} >CREATE</Button>
           </Link>
           {/* onClick={(e) => Save(e)} */}
       </Wrapper>

@@ -36,7 +36,7 @@ margin-bottom: 90px;
 const Title = styled.h1`
   font-size: 26px;
   font-weight: 300;
-  color:teal
+  color:#159b80
 `;
 
 const Form = styled.form`
@@ -63,7 +63,7 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: teal;
+  background-color: #159b80;
   color: white;
   cursor: pointer;
   border-radius: 10px;
@@ -78,6 +78,7 @@ const Register = () => {
   Email:"",
   password:"",
   ConfirmPassword:"",
+  role:""
   });
 
   function Save(e) {
@@ -88,7 +89,7 @@ const Register = () => {
         console.log(res);
 
       });      
-        // history.push("/InfoVendor");
+        history.push("/InfoVendor");
 
   }
   return (
@@ -110,20 +111,31 @@ const Register = () => {
   padding: "10px",
   }}
   onChange={(e)=>setAdduser({...User,Email:e.target.value})}/>
-          <TextField id="standard-basic" label="password" variant="standard" style={{  flex: 1,
-  minWidth: "40%",
+          <TextField id="standard-basic" label="password" variant="standard" type="password" style={{  flex: 1,
+  minWidth: "100%",
   margin: "20px 10px 0px 0px",
   padding: "10px",
   }} 
-  onChange={(e)=>setAdduser({...User,password:e.target.value})} />
-          <TextField id="standard-basic" label="Confirm Password" variant="standard"  style={{  flex: 1,
+  onChange={(e)=>setAdduser({...User,password:e.target.value})} /><br/>
+          {/* <TextField id="standard-basic" label="Confirm Password" variant="standard" type="password"  style={{  flex: 1,
   minWidth: "40%",
   margin: "20px 10px 0px 0px",
   padding: "10px",
   }}
-  onChange={(e)=>setAdduser({...User,ConfirmPassword:e.target.value})}/>
+  onChange={(e)=>setAdduser({...User,ConfirmPassword:e.target.value})}/> */}
          
+<select style={{  flex: 1,
+  minWidth: "5%",
+  margin: "20px 10px 0px 0px",
+  padding: "10px",
+  borderRadius:"5px"
+  }}
+ onChange={(e)=>setAdduser({...User,role:e.target.value})}>
+  <option value="user">Affiliate</option>
+  <option value="vendor">Vendor</option>
+</select><br/>
 
+{/* <p>Are you a vendor click <a href="https://abnas-admin-herokuapp.com">here</a>to sign up</p> */}
         </Form>
                <Button    onClick={(e) => Save(e)} style={{marginTop:"10%"}} >Register Now</Button>  
       </Wrapper>
